@@ -27,9 +27,9 @@ const ps = [
   },
 ];
 
-const types = {
+const typesMap = {
   string: 'string',
-  int: 'number',
+  int: 'integer',
   double: 'number',
   bool: 'boolean',
   DateTime: 'string',
@@ -63,7 +63,7 @@ const parseLine = (line) => {
     };
   }
 
-  const type = types[words[1]];
+  const type = typesMap[words[1]];
   return type
     ? {
         name: words[2].charAt(0).toLowerCase() + words[2].slice(1),
