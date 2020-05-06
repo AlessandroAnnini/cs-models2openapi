@@ -4,6 +4,10 @@ const path = require('path');
 const qoa = require('qoa');
 const { createBase, createPath } = require('./openapi');
 
+String.prototype.uncapitalize = function () {
+  return this.charAt(0).toLowerCase() + this.slice(1);
+};
+
 const ps = [
   {
     type: 'input',
@@ -45,29 +49,28 @@ const parseLine = (line) => {
     .replace(/ +(?= )/g, '')
     .trim()
     .split(' ');
-  // .slice(1);
 
   if (words[1] === 'virtual') {
     if (words[2] === 'IEnumerable' || words[2] === 'ICollection') {
       return {
-        name: words[4],
+        name: words[4].uncapitalize(),
         data: {
           type: 'array',
-          items: { $ref: `#/components/schemas/${words[3]}` },
+          items: { $ref: `#/components/schemas/${words[3].uncapitalize()}` },
         },
       };
     }
     return {
-      name: words[3],
-      data: { $ref: `#/components/schemas/${words[2]}` },
+      name: words[3].uncapitalize(),
+      data: { $ref: `#/components/schemas/${words[2]}.uncapitalize()` },
     };
   }
 
   const type = typesMap[words[1]];
   return type
     ? {
-        name: words[2].charAt(0).toLowerCase() + words[2].slice(1),
-        data: { type },
+        name: words[2].uncapitalize(),
+        data: { type: type.uncapitalize() },
       }
     : null;
 };
