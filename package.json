@@ -1,0 +1,19 @@
+{
+  "name": "cs-models2openapi",
+  "version": "1.0.0",
+  "description": "Generate openapi specs from c# classes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "openapi",
+    "c#"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "qoa": "^0.2.0"
+  }
+}
