@@ -56,13 +56,13 @@ const parseLine = (line) => {
         name: words[4].uncapitalize(),
         data: {
           type: 'array',
-          items: { $ref: `#/components/schemas/${words[3].uncapitalize()}` },
+          items: { $ref: `#/components/schemas/${words[3]}` },
         },
       };
     }
     return {
       name: words[3].uncapitalize(),
-      data: { $ref: `#/components/schemas/${words[2].uncapitalize()}` },
+      data: { $ref: `#/components/schemas/${words[2]}` },
     };
   }
 
