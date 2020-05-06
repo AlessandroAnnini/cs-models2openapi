@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const qoa = require('qoa');
-const buildBase = require('./openapi');
+const { createBase, createPath } = require('./openapi');
 
 const ps = [
   {
@@ -123,7 +123,7 @@ const main = (config) => {
     return;
   }
 
-  const openapi = buildBase(config);
+  const openapi = createBase(config);
 
   const models = convert(config.rootPath);
 
@@ -134,6 +134,16 @@ const main = (config) => {
         (openapi.components.schemas = {
           ...openapi.components.schemas,
           ...model,
+        })
+    );
+
+  models
+    .filter((model) => !!model)
+    .forEach(
+      (model) =>
+        (openapi.paths = {
+          ...openapi.paths,
+          ...createPath(model),
         })
     );
 
