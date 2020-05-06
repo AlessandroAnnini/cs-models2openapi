@@ -62,7 +62,7 @@ const parseLine = (line) => {
     }
     return {
       name: words[3].uncapitalize(),
-      data: { $ref: `#/components/schemas/${words[2]}.uncapitalize()` },
+      data: { $ref: `#/components/schemas/${words[2].uncapitalize()}` },
     };
   }
 
