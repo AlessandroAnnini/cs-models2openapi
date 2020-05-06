@@ -110,5 +110,5 @@ temp/
 
 # End of https://www.gitignore.io/api/node
 
-files
+Models
 result.json
